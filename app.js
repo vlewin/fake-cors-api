@@ -3,7 +3,7 @@ const path = require('path')
 const bodyParser = require('body-parser')
 const app = express();
 
-// app.use(express.static('public'));
+app.use(express.static('public'));
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
@@ -16,6 +16,12 @@ app.get('/', function(req, res) {
 });
 
 app.get('/unauthorized', function(req, res) {
+  console.log('request', req)
+  res.status(401);
+  res.send('None shall pass')
+});
+
+app.post('/unauthorized', function(req, res) {
   console.log('request', req)
   res.status(401);
   res.send('None shall pass')
